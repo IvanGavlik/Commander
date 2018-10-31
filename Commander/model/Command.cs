@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Commander.model
 {
-    enum Status
+    public class Command
     {
-        ON, OFF
+      
+        private Command() { }
+        
+        public readonly static string FIVE = "FIVE"; //  Command FIVE open youtube
+
     }
 }
