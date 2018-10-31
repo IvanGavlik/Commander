@@ -65,7 +65,6 @@
     <Compile Include="controller\ActionHandler.cs" />
     <Compile Include="controller\SpeachRecognition.cs" />
     <Compile Include="model\Command.cs" />
-    <Compile Include="model\Grammar.cs" />
     <Compile Include="view\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Speech.Recognition.SrgsGrammar;
 using System.Speech.Recognition;
-
+using System.Globalization;
 
 namespace Commander.controller
 {
@@ -24,57 +24,43 @@ namespace Commander.controller
     {
         private Status Status;
         private SpeechRecognitionEngine Engine;
-        private SrgsDocument grammarDocument;
         private ActionHandler actionHandler;
 
-        public SpeachRecognitionImpl(List<String> grammarRules)
+        public SpeachRecognitionImpl(Grammar grammar)
         {
             Status = Status.OFF;
-            Engine = new SpeechRecognitionEngine();
-
-            SrgsOneOf oneOfRules = new SrgsOneOf();
-            foreach (String el in grammarRules)
-            {
-                oneOfRules.Add(new SrgsItem(el));
-            }
-
-            SrgsRule rule = new SrgsRule("SpeachRecognitionRule");
-            rule.Add(oneOfRules);
-            grammarDocument = new SrgsDocument();
-            grammarDocument.Rules.Add(rule);
-            grammarDocument.Root = rule;
-            Engine.LoadGrammar(new System.Speech.Recognition.Grammar(grammarDocument));
+            Engine = new SpeechRecognitionEngine(new CultureInfo("en-US"));
             Engine.SetInputToDefaultAudioDevice();
+            Engine.RequestRecognizerUpdate();
+            Engine.LoadGrammar(grammar);
+            Engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(speechRecognized);
         }
+
 
         public void startRecognition()
         {
             switch (Status)
             {
                 case Status.ON:
-                    MessageBox.Show("Alreday started");
+                    MessageBox.Show("Listening alreday started");
                     break;
                 case Status.OFF:
                     StartListening();
+                    MessageBox.Show("Listening started");
                     break;
                 default: throw new NotImplementedException();
             }
-
         }
 
         internal void StartListening()
         {
             Status = Status.ON;
-            Engine.RecognizeAsync();
-            Engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(speechRecognized);
-
+            Engine.RecognizeAsync(RecognizeMode.Multiple);
         }
 
         private void speechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            //TODO
             actionHandler.execute(e.Result.Text);
-
         }
 
         public void stopRecognition()
@@ -83,9 +69,10 @@ namespace Commander.controller
             {
                 case Status.ON:
                     StopListening();
+                    MessageBox.Show("Listening stoped");
                     break;
                 case Status.OFF:
-                    MessageBox.Show("Alreday stoped");
+                    MessageBox.Show("Listening alreday stoped");
                     break;
                 default: throw new NotImplementedException();
             }
