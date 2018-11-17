@@ -1,13 +1,9 @@
 ﻿using Commander.model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Speech.Recognition.SrgsGrammar;
 using System.Speech.Recognition;
 using System.Globalization;
+using Commander.util.exception;
 
 namespace Commander.controller
 {
@@ -26,14 +22,21 @@ namespace Commander.controller
         private SpeechRecognitionEngine Engine;
         private ActionHandler actionHandler;
 
-        public SpeachRecognitionImpl(Grammar grammar)
+        public SpeachRecognitionImpl(System.Speech.Recognition.Grammar grammar)
         {
-            Status = Status.OFF;
-            Engine = new SpeechRecognitionEngine(new CultureInfo("en-US"));
-            Engine.SetInputToDefaultAudioDevice();
-            Engine.RequestRecognizerUpdate();
-            Engine.LoadGrammar(grammar);
-            Engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(speechRecognized);
+            try
+            {
+                Status = Status.OFF;
+                Engine = new SpeechRecognitionEngine(new CultureInfo("en-US"));
+                Engine.SetInputToDefaultAudioDevice();
+                Engine.RequestRecognizerUpdate();
+                Engine.LoadGrammar(grammar);
+                Engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(speechRecognized);
+            }  catch(Exception ex)
+            {
+                throw new SpeechRecognitionCreationException("Speech Recognition Creation Failed", ex);
+            }
+
         }
 
 

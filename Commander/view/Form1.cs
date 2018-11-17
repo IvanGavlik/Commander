@@ -1,6 +1,8 @@
 ﻿using Commander.controller;
 using Commander.model;
+using Commander.util.exception;
 using System;
+using System.Globalization;
 using System.Speech.Recognition;
 using System.Windows.Forms;
 
@@ -20,11 +22,23 @@ namespace Commander
 
             Choices listOfChoices = new Choices();
             listOfChoices.Add(new string[] { Command.ONE, Command.TWO, Command.THREE, Command.FOUR, Command.FIVE });
-            Grammar grammar = new Grammar(new GrammarBuilder(listOfChoices));
+            GrammarBuilder grammarBuilder = new GrammarBuilder(listOfChoices);
+            CultureInfo culture = new CultureInfo("en-US");
+
+            Grammar grammar = new Grammar(grammarBuilder);
             grammar.Name = "Commander grammar";
-            speachRecognition = new SpeachRecognitionImpl(grammar);
-            speachRecognition.setActionHandler(new ActionHandlerImpl());
-        }
+
+            try
+            {
+                speachRecognition = new SpeachRecognitionImpl(grammar);
+                speachRecognition.setActionHandler(new ActionHandlerImpl());
+            }
+            catch (SpeechRecognitionCreationException ex)
+            {
+                MessageBox.Show(ex.Message, "Command aplication", MessageBoxButtons.OK);
+                Form1_FormClosing(null, null);
+            }
+        }    
 
         private void start_Click(object sender, EventArgs e)
         {
