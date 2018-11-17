@@ -37,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.info = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // start
@@ -88,7 +89,7 @@
             // 
             this.Commands.AutoSize = true;
             this.Commands.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Commands.Location = new System.Drawing.Point(109, 108);
+            this.Commands.Location = new System.Drawing.Point(109, 111);
             this.Commands.Name = "Commands";
             this.Commands.Size = new System.Drawing.Size(90, 20);
             this.Commands.TabIndex = 3;
@@ -98,7 +99,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(82, 139);
+            this.label3.Location = new System.Drawing.Point(79, 142);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(158, 16);
             this.label3.TabIndex = 4;
@@ -108,7 +109,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(82, 168);
+            this.label2.Location = new System.Drawing.Point(79, 171);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(155, 16);
             this.label2.TabIndex = 5;
@@ -118,7 +119,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(82, 196);
+            this.label4.Location = new System.Drawing.Point(79, 199);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(160, 16);
             this.label4.TabIndex = 6;
@@ -128,7 +129,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(82, 225);
+            this.label5.Location = new System.Drawing.Point(79, 228);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(147, 16);
             this.label5.TabIndex = 7;
@@ -138,11 +139,22 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(82, 250);
+            this.label6.Location = new System.Drawing.Point(79, 253);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(159, 16);
             this.label6.TabIndex = 8;
             this.label6.Text = "Say FIVE to start youtube";
+            // 
+            // info
+            // 
+            this.info.AutoSize = true;
+            this.info.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.info.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.info.Location = new System.Drawing.Point(282, 9);
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(34, 20);
+            this.info.TabIndex = 9;
+            this.info.Text = "Off";
             // 
             // Form1
             // 
@@ -150,6 +162,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.ClientSize = new System.Drawing.Size(328, 349);
+            this.Controls.Add(this.info);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -183,6 +196,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label info;
     }
 }
 

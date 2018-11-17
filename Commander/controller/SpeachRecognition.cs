@@ -3,12 +3,14 @@ using System;
 using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Globalization;
-using Commander.util.exception;
+using Commander.exception;
 
 namespace Commander.controller
 {
     interface SpeachRecognition
     {
+        Status GetStatus(); 
+
         void startRecognition();
 
         void stopRecognition();
@@ -22,7 +24,7 @@ namespace Commander.controller
         private SpeechRecognitionEngine Engine;
         private ActionHandler actionHandler;
 
-        public SpeachRecognitionImpl(System.Speech.Recognition.Grammar grammar)
+        public SpeachRecognitionImpl(Grammar grammar)
         {
             try
             {
@@ -42,21 +44,6 @@ namespace Commander.controller
 
         public void startRecognition()
         {
-            switch (Status)
-            {
-                case Status.ON:
-                    MessageBox.Show("Listening alreday started");
-                    break;
-                case Status.OFF:
-                    StartListening();
-                    MessageBox.Show("Listening started");
-                    break;
-                default: throw new NotImplementedException();
-            }
-        }
-
-        internal void StartListening()
-        {
             Status = Status.ON;
             Engine.RecognizeAsync(RecognizeMode.Multiple);
         }
@@ -68,21 +55,6 @@ namespace Commander.controller
 
         public void stopRecognition()
         {
-            switch (Status)
-            {
-                case Status.ON:
-                    StopListening();
-                    MessageBox.Show("Listening stoped");
-                    break;
-                case Status.OFF:
-                    MessageBox.Show("Listening alreday stoped");
-                    break;
-                default: throw new NotImplementedException();
-            }
-        }
-
-        internal void StopListening()
-        {
             Engine.RecognizeAsyncStop();
             Status = Status.OFF;
         }
@@ -90,6 +62,11 @@ namespace Commander.controller
         public void setActionHandler(ActionHandler actionHandler)
         {
             this.actionHandler = actionHandler;
+        }
+
+        public Status GetStatus()
+        {
+            return this.Status;
         }
     }
 }

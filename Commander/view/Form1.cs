@@ -1,6 +1,6 @@
 ﻿using Commander.controller;
+using Commander.exception;
 using Commander.model;
-using Commander.util.exception;
 using System;
 using System.Globalization;
 using System.Speech.Recognition;
@@ -19,7 +19,6 @@ namespace Commander
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             Choices listOfChoices = new Choices();
             listOfChoices.Add(new string[] { Command.ONE, Command.TWO, Command.THREE, Command.FOUR, Command.FIVE });
             GrammarBuilder grammarBuilder = new GrammarBuilder(listOfChoices);
@@ -36,18 +35,31 @@ namespace Commander
             catch (SpeechRecognitionCreationException ex)
             {
                 MessageBox.Show(ex.Message, "Command aplication", MessageBoxButtons.OK);
-                Form1_FormClosing(null, null);
+                Environment.Exit(-1);
             }
+
+            info.Text = "OFF";
+            info.ForeColor = System.Drawing.Color.OrangeRed;
+            start.Enabled = true;
+            stop.Enabled = false;
         }    
 
         private void start_Click(object sender, EventArgs e)
         {
-            speachRecognition.startRecognition();
+            if(speachRecognition.GetStatus().Equals(Status.OFF)) 
+            {
+                speachRecognition.startRecognition();
+                updateViewComponents();
+            }
         }
 
         private void stop_Click(object sender, EventArgs e)
         {
-            speachRecognition.stopRecognition();
+            if (speachRecognition.GetStatus().Equals(Status.ON))
+            {
+                speachRecognition.stopRecognition();
+                updateViewComponents();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -57,6 +69,25 @@ namespace Commander
             {
                 e.Cancel = true;
             }
+        }
+
+        private void updateViewComponents()
+        {
+            start.Enabled = !start.Enabled;
+            stop.Enabled = !stop.Enabled;
+
+            if (info.ForeColor != System.Drawing.Color.OrangeRed)
+            {
+                info.Text = "OFF";
+                info.ForeColor = System.Drawing.Color.OrangeRed;
+            }
+            else
+            {
+                info.Text = "ON";
+                info.ForeColor = System.Drawing.Color.GreenYellow;
+            }
+
+
         }
     }
 }
