@@ -7,7 +7,7 @@ using Commander.exception;
 
 namespace Commander.controller
 {
-    interface SpeachRecognition
+    interface Speach
     {
         Status GetStatus(); 
 
@@ -18,13 +18,13 @@ namespace Commander.controller
         void setActionHandler(ActionHandler actionHandler);
     }
 
-    class SpeachRecognitionImpl : SpeachRecognition
+    class SpeachImpl : Speach
     {
         private Status Status;
         private SpeechRecognitionEngine Engine;
         private ActionHandler actionHandler;
 
-        public SpeachRecognitionImpl(Grammar grammar)
+        public SpeachImpl(Grammar grammar)
         {
             try
             {

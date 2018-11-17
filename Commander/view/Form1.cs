@@ -10,7 +10,7 @@ namespace Commander
 {
     public partial class Form1 : Form
     {
-        private SpeachRecognition speachRecognition;
+        private Speach speach;
 
         public Form1()
         {
@@ -29,8 +29,8 @@ namespace Commander
 
             try
             {
-                speachRecognition = new SpeachRecognitionImpl(grammar);
-                speachRecognition.setActionHandler(new ActionHandlerImpl());
+                speach = new SpeachImpl(grammar);
+                speach.setActionHandler(new ActionHandlerImpl());
             }
             catch (SpeechRecognitionCreationException ex)
             {
@@ -46,18 +46,18 @@ namespace Commander
 
         private void start_Click(object sender, EventArgs e)
         {
-            if(speachRecognition.GetStatus().Equals(Status.OFF)) 
+            if(speach.GetStatus().Equals(Status.OFF)) 
             {
-                speachRecognition.startRecognition();
+                speach.startRecognition();
                 updateViewComponents();
             }
         }
 
         private void stop_Click(object sender, EventArgs e)
         {
-            if (speachRecognition.GetStatus().Equals(Status.ON))
+            if (speach.GetStatus().Equals(Status.ON))
             {
-                speachRecognition.stopRecognition();
+                speach.stopRecognition();
                 updateViewComponents();
             }
         }
