@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Commander.log;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Commander.exception
         public SpeechRecognitionCreationException(string message)
             : base(message)
         {
+            LogFile.info("SpeechRecognitionCreationException", message);
         }
 
         public SpeechRecognitionCreationException(string message, Exception inner)

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Globalization;
 using Commander.exception;
+using Commander.log;
 
 namespace Commander.controller
 {
@@ -18,13 +19,13 @@ namespace Commander.controller
         void setActionHandler(ActionHandler actionHandler);
     }
 
-    class SpeachImpl : Speach
+    class SpeechImpl : Speach
     {
         private Status Status;
         private SpeechRecognitionEngine Engine;
         private ActionHandler actionHandler;
 
-        public SpeachImpl(Grammar grammar)
+        public SpeechImpl(Grammar grammar)
         {
             try
             {
@@ -44,6 +45,7 @@ namespace Commander.controller
 
         public void startRecognition()
         {
+            LogFile.info("Speech", "startRecognition");
             Status = Status.ON;
             Engine.RecognizeAsync(RecognizeMode.Multiple);
         }
@@ -55,9 +57,11 @@ namespace Commander.controller
 
         public void stopRecognition()
         {
+            LogFile.info("Speech", "stopRecognition");
             Engine.RecognizeAsyncStop();
             Status = Status.OFF;
         }
+
 
         public void setActionHandler(ActionHandler actionHandler)
         {

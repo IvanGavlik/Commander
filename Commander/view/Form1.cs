@@ -1,10 +1,12 @@
 ﻿using Commander.controller;
 using Commander.exception;
 using Commander.model;
+using Commander.view;
 using System;
 using System.Globalization;
 using System.Speech.Recognition;
 using System.Windows.Forms;
+
 
 namespace Commander
 {
@@ -19,8 +21,9 @@ namespace Commander
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Settings.GetInstance().Port = 6060; //SET default port, save to file obavezno, kod gašenja aplikacije 
             Choices listOfChoices = new Choices();
-            listOfChoices.Add(new string[] { Command.ONE, Command.TWO, Command.THREE, Command.FOUR, Command.FIVE });
+            listOfChoices.Add(Command.GetEclipseCommands());
             GrammarBuilder grammarBuilder = new GrammarBuilder(listOfChoices);
             CultureInfo culture = new CultureInfo("en-US");
 
@@ -29,8 +32,8 @@ namespace Commander
 
             try
             {
-                speach = new SpeachImpl(grammar);
-                speach.setActionHandler(new ActionHandlerImpl());
+                speach = new SpeechImpl(grammar);
+                speach.setActionHandler(new EclipseActionHandler());
             }
             catch (SpeechRecognitionCreationException ex)
             {
@@ -46,11 +49,9 @@ namespace Commander
 
         private void start_Click(object sender, EventArgs e)
         {
-            if(speach.GetStatus().Equals(Status.OFF)) 
-            {
-                speach.startRecognition();
-                updateViewComponents();
-            }
+            Template t = new Template();
+            t.Show();
+           /**/
         }
 
         private void stop_Click(object sender, EventArgs e)
@@ -67,6 +68,7 @@ namespace Commander
             DialogResult result =  MessageBox.Show("Do you whant to exit ?", "Exit Command aplication" , MessageBoxButtons.YesNo);
             if(result == DialogResult.No)
             {
+                //TODO save port number to file
                 e.Cancel = true;
             }
         }
@@ -88,6 +90,12 @@ namespace Commander
             }
 
 
+        }
+
+        private void setSettings(object sender, EventArgs e)
+        {
+            SettingsFormOld settings = new SettingsFormOld();
+            settings.Show();
         }
     }
 }

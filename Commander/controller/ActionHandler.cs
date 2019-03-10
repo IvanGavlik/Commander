@@ -1,9 +1,10 @@
-﻿using Commander.model;
+﻿using Commander.log;
+using Commander.model;
+using Commander.view;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Commander.controller
 {
@@ -46,6 +47,26 @@ namespace Commander.controller
             }
 
           
+        }
+    }
+
+    class EclipseActionHandler : ActionHandler
+    {
+        private UdpClient udpClient = new UdpClient();
+
+        public void execute(String command)
+        {
+            LogFile.info("EclipseActionHandler", "execute", command);
+            udpClient.Connect("127.0.0.1", Settings.GetInstance().Port);
+            Byte[] sendBytes = Encoding.UTF8.GetBytes(command);
+            udpClient.Send(sendBytes, sendBytes.Length);
+
+            if (Settings.GetInstance().DispalyInfo)
+            {
+                Info.GetInstance().Value = "Recognized: " + command;
+                InfoForm info = new InfoForm();
+                info.Show();
+            }
         }
     }
 }
