@@ -6,13 +6,9 @@ using Commander.exception;
 using Commander.model;
 using System.Globalization;
 using System.Speech.Recognition;
-using Commander.log;
 
-//TODO LOGIRANJE
 //TODO EMAIL -> Greška
 //TODO IZGLED -> data table šta sam rekao 
-//TODO IME 
-//TODO DISPLAY INFO U SEINGE STAVITI
 //TODO VOICE CAN STart, stoped
 namespace Commander.view
 {
@@ -32,8 +28,20 @@ namespace Commander.view
             help.ForeColor = ColorTranslator.FromHtml("#57b846");
 
             //load
-            Settings.GetInstance().Port = 6060; //SET default port, save to file obavezno, kod gašenja aplikacije 
-            Settings.GetInstance().DispalyInfo= true; 
+            LogFile.info("Application", "load cmd arguments");
+            string[] args = Environment.GetCommandLineArgs();
+            Settings.GetInstance().LogFilePath = args[2]; //SET default port, save to file obavezno, kod gašenja aplikacije 
+
+            Info.GetInstance().Value = args[1];
+            InfoForm info = new InfoForm();
+            info.Show();
+
+
+            Settings.GetInstance().DispalyInfo= true;
+
+            
+            
+
 
             Choices listOfChoices = new Choices();
             listOfChoices.Add(Command.GetEclipseCommands());
@@ -58,10 +66,17 @@ namespace Commander.view
             start.Enabled = true;
             settings.Enabled = true;
             stop.Enabled = false;
-      
+
+            start_Click(null, null);
         }
 
-    
+       
+ 
+        protected override void SetVisibleCore(bool value)
+        {
+            base.SetVisibleCore(false);
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you whant to exit ?", "Exit Command aplication", MessageBoxButtons.YesNo);

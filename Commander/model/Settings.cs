@@ -7,8 +7,8 @@ namespace Commander.model
     {
         private int portNumber;
         private bool displayRecDialog;
-        private readonly string path = Application.UserAppDataPath;
-        private readonly string fileName = "\\commanderLog.txt";
+        private string fullPath;
+       
 
         public int Port
         {
@@ -37,9 +37,14 @@ namespace Commander.model
         {
             get
             {
-                return path + fileName;
-            }        
+                return fullPath;
+            }
+            set
+            {
+                fullPath = value;
+            }
         }
+
 
         //Singleton
         private static Settings instance;

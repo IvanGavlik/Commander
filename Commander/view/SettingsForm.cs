@@ -1,5 +1,4 @@
-﻿using Commander.log;
-using Commander.model;
+﻿using Commander.model;
 using System;
 using System.Drawing;
 using System.Net;
@@ -45,7 +44,7 @@ namespace Commander.view
             {
                 info.Text = "Port number mut be in range\nfrom xxx to yyy";
                 info.ForeColor = System.Drawing.Color.OrangeRed;
-                LogFile.info("Settings", "save_Click", "port " + port, info.Text);
+                LogFile.info("Settings", "save_Click", "port " + port, info.Text, ex.ToString());
             }
            
             Settings.GetInstance().DispalyInfo = displayDialog.Checked;
@@ -81,7 +80,7 @@ namespace Commander.view
             {
                 info.Text = "Port number mut be in range from xxx to yyy";
                 info.ForeColor = System.Drawing.Color.OrangeRed;
-                LogFile.info("Settings", "testConnection_Click", "port " + port, info.Text);
+                LogFile.info("Settings", "testConnection_Click", "port " + port, info.Text, ex.ToString());
             }
         }
 

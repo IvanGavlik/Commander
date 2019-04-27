@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Globalization;
 using Commander.exception;
-using Commander.log;
 
 namespace Commander.controller
 {

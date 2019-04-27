@@ -127,13 +127,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="info.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+    <value>Microsoft Sans Serif, 14.25pt, style=Bold</value>
   </data>
   <data name="info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 56</value>
+    <value>0, 37</value>
   </data>
   <data name="info.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 25</value>
+    <value>320, 44</value>
   </data>
   <data name="info.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -157,7 +157,10 @@
     <value>Top</value>
   </data>
   <data name="title.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Impact, 30pt</value>
+    <value>Impact, 14.25pt</value>
+  </data>
+  <data name="title.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
   </data>
   <data name="title.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -166,16 +169,17 @@
     <value>53, 0, 3, 0</value>
   </data>
   <data name="title.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 50</value>
+    <value>320, 37</value>
   </data>
   <data name="title.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="title.Text" xml:space="preserve">
-    <value>Commander</value>
+    <value>Polaris Speach Recognition Engine
+</value>
   </data>
   <data name="title.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+    <value>BottomCenter</value>
   </data>
   <data name="&gt;&gt;title.Name" xml:space="preserve">
     <value>title</value>
@@ -1891,7 +1895,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Commander &gt; Info</value>
+    <value>Info</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>InfoForm</value>

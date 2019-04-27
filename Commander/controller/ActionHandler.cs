@@ -1,5 +1,4 @@
-﻿using Commander.log;
-using Commander.model;
+﻿using Commander.model;
 using Commander.view;
 using System;
 using System.Net.Sockets;

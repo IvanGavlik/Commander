@@ -62,7 +62,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Commander_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -82,9 +88,9 @@
     <Compile Include="controller\ActionHandler.cs" />
     <Compile Include="controller\Speach.cs" />
     <Compile Include="exception\SpeechRecognitionCreationException.cs" />
-    <Compile Include="log\LogFile.cs" />
     <Compile Include="model\Command.cs" />
     <Compile Include="model\Info.cs" />
+    <Compile Include="model\LogFile.cs" />
     <Compile Include="model\Settings.cs" />
     <Compile Include="view\Form1.cs">
       <SubType>Form</SubType>

@@ -41,6 +41,7 @@
             resources.ApplyResources(this.info, "info");
             this.info.ForeColor = System.Drawing.Color.Black;
             this.info.Name = "info";
+            this.info.Click += new System.EventHandler(this.Info_Click);
             // 
             // title
             // 
