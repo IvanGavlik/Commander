@@ -17,7 +17,7 @@ namespace Commander.view
 
             t1 = new Timer();
             t1.Tick += t1_Tick;
-            t1.Interval = 1500000; // 1.5 seconds
+            t1.Interval = 2000; // 1.5 seconds
             t1.Start();
         }
 

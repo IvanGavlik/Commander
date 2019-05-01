@@ -14,7 +14,9 @@ namespace Commander
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Template());            
+            Template t = new Template();
+            t.Hide();
+            Application.Run();            
         }
     }
 }

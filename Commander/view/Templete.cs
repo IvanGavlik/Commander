@@ -18,7 +18,6 @@ namespace Commander.view
 
         public Template()
         {
-            LogFile.info("Application", "start");
             InitializeComponent();
             this.BackColor = ColorTranslator.FromHtml("#57b846");
             header.BackColor = ColorTranslator.FromHtml("#57b846");
@@ -28,19 +27,11 @@ namespace Commander.view
             help.ForeColor = ColorTranslator.FromHtml("#57b846");
 
             //load
-            LogFile.info("Application", "load cmd arguments");
             string[] args = Environment.GetCommandLineArgs();
-            Settings.GetInstance().LogFilePath = args[2]; //SET default port, save to file obavezno, kod gašenja aplikacije 
-
-            Info.GetInstance().Value = args[1];
-            InfoForm info = new InfoForm();
-            info.Show();
-
-
+            LogFile.info("Application", "load cmd arguments", "port: ",  args[1], "log path: " args[2]);
+            Settings.GetInstance().Port = Int32.Parse(args[1]);
+            Settings.GetInstance().LogFilePath = args[2]; 
             Settings.GetInstance().DispalyInfo= true;
-
-            
-            
 
 
             Choices listOfChoices = new Choices();
@@ -72,10 +63,11 @@ namespace Commander.view
 
        
  
-        protected override void SetVisibleCore(bool value)
+ /*       protected override void SetVisibleCore(bool value)
         {
             base.SetVisibleCore(false);
         }
+*/
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -96,7 +88,7 @@ namespace Commander.view
                 InfoForm info = new InfoForm();
                 info.Show();
                 updateViewComponents();
-                LogFile.info("Application", "start_Click");
+                LogFile.info("Application", "You can start now start Click");
             }
         }
 

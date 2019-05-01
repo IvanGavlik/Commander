@@ -66,6 +66,7 @@ namespace Commander.controller
                 InfoForm info = new InfoForm();
                 info.Show();
             }
+             LogFile.info("EclipseActionHandler", "127.0.0.1", Settings.GetInstance().Port.ToString(), "send", command);
         }
     }
 }
